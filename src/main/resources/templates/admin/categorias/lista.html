@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorías</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="fragments/navbar :: menu"></div>
+
+<h2 style="text-align:center;">Categorías</h2>
+
+<div style="text-align:center; margin-bottom: 20px;">
+    <a th:href="@{/admin/categorias/nuevo}">Nueva Categoría</a>
+</div>
+
+<table style="margin: auto;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="cat : ${categorias}">
+            <td th:text="${cat.id}">1</td>
+            <td th:text="${cat.nombre}">Lavadora</td>
+            <td>
+                <a th:href="@{'/admin/categorias/editar/' + ${cat.id}}">Editar</a> |
+                <a th:href="@{'/admin/categorias/eliminar/' + ${cat.id}}"
+                   onclick="return confirm('¿Eliminar categoría?')">Eliminar</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

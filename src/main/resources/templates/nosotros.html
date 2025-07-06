@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Nosotros | Leonctio</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+</head>
+<body>
+
+    <!-- Menú de navegación -->
+    <header th:replace="fragments/navbar :: menu"></header>
+
+    <!-- Contenido principal -->
+    <main class="container mt-5">
+
+        <section class="text-center mb-5">
+            <h1 class="display-4">Quiénes Somos</h1>
+            <p class="lead">En Leonctio nos especializamos en ofrecer soluciones confiables y eficientes en productos de línea blanca, buscando siempre satisfacer las necesidades de nuestros clientes.</p>
+        </section>
+
+        <!-- Misión, Visión, Valores -->
+        <section class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h3 class="card-title">Misión</h3>
+                        <p class="card-text">
+                            Brindar productos de alta calidad que mejoren la vida de nuestros clientes, con un compromiso constante hacia la innovación, la eficiencia y el excelente servicio.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h3 class="card-title">Visión</h3>
+                        <p class="card-text">
+                            Ser líderes en el mercado nacional de electrodomésticos, reconocidos por nuestra responsabilidad social, compromiso ambiental y atención al cliente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h3 class="card-title">Valores</h3>
+                        <ul class="list-unstyled">
+                            <li>✔ Compromiso</li>
+                            <li>✔ Honestidad</li>
+                            <li>✔ Innovación</li>
+                            <li>✔ Responsabilidad</li>
+                            <li>✔ Trabajo en equipo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Historia de la empresa (opcional) -->
+        <section class="mt-5">
+            <h2 class="text-center">Nuestra Historia</h2>
+            <p class="text-center">
+                Fundada en 2020, Leonctio nació con la visión de transformar la experiencia de compra de electrodomésticos. Desde nuestros humildes comienzos, hemos crecido gracias al esfuerzo de un equipo apasionado y al respaldo de miles de clientes satisfechos.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Pie de página (opcional) -->
+    <footer class="bg-light text-center py-4 mt-5">
+        <p class="mb-0">&copy; 2025 Leonctio. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

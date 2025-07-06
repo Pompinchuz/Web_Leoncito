@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Categoría</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="fragments/navbar :: menu"></div>
+
+<div class="banner" style="padding: 30px; text-align: center;">
+    <h2 th:text="${categoria.id != null ? 'Editar Categoría' : 'Nueva Categoría'}"></h2>
+
+    <form th:action="@{/admin/categorias/guardar}" th:object="${categoria}" method="post"
+          style="display:inline-block; max-width:400px; text-align:left;">
+
+        <input type="hidden" th:field="*{id}"/>
+
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" required/><br><br>
+
+        <button type="submit">Guardar</button>
+        <a th:href="@{/admin/categorias}">Cancelar</a>
+    </form>
+</div>
+
+</body>
+</html>

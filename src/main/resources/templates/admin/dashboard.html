@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel del Administrador</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="navbar">
+        
+        <span sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" style="background:none; border:none; color:white; cursor:pointer;">Cerrar sesión</button>
+            </form>
+        </span>
+    </div>
+
+    <div class="banner">
+        <h2>Bienvenido, Administrador  </h2>
+        <p>Aquí puedes gestionar productos, usuarios y más.</p>
+        <a th:href="@{/admin/productos}">Gestionar Productos</a>
+        <br>
+
+        <a th:href="@{/admin/categorias}">Gestionar Categorías</a>
+
+
+    </div>
+</body>
+</html>

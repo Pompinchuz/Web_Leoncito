@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Producto</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="fragments/navbar :: menu"></div>
+
+<div class="banner" style="padding: 30px; text-align: center;">
+
+    <!-- ✅ Corrección aquí -->
+    <h2 th:if="${producto.id != null}">Editar Producto</h2>
+    <h2 th:unless="${producto.id != null}">Nuevo Producto</h2>
+
+    <form th:action="@{/admin/productos/guardar}" th:object="${producto}" method="post"
+          style="display: inline-block; text-align: left; max-width: 400px;">
+        <input type="hidden" th:field="*{id}" />
+
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" th:field="*{nombre}" required><br><br>
+
+        <label for="descripcion">Descripción:</label><br>
+        <textarea th:field="*{descripcion}" required></textarea><br><br>
+
+        <label for="precio">Precio:</label><br>
+        <input type="number" th:field="*{precio}" step="0.01" required><br><br>
+
+        <label for="categoria">Categoría:</label><br>
+        <select th:field="*{categoria}" required>
+            <option value="">-- Selecciona --</option>
+            <option th:each="c : ${categorias}"
+                    th:value="${c.id}"
+                    th:text="${c.nombre}"
+                    th:selected="${producto.categoria != null and producto.categoria.id == c.id}">
+            </option>
+        </select><br><br>
+
+        <label for="imagen">URL de Imagen:</label><br>
+        <input type="text" th:field="*{imagen}" placeholder="https://..."><br><br>
+
+        <div th:if="*{imagen} != null and *{imagen} != ''" style="margin-top: 20px;">
+            <p>Vista previa de la imagen:</p>
+            <img th:src="*{imagen}" alt="Vista previa"
+                 style="max-width: 300px; height: auto; border: 1px solid #ccc; padding: 5px;">
+        </div>
+
+        <button type="submit">Guardar</button>
+        <a th:href="@{/admin/productos}">Cancelar</a>
+    </form>
+</div>
+
+</body>
+</html>

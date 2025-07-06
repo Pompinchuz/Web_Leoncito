@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos - Leoncito</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Menú de navegación -->
+<div th:replace="fragments/navbar :: menu"></div>
+
+<div class="banner">
+    <h1>Nuestros Productos</h1>
+    <p>Explora nuestra línea de electrodomésticos de calidad.</p>
+</div>
+
+<div class="productos">
+    <div class="producto" th:each="producto : ${productos}">
+        <img th:src="${producto.imagen}" alt="Producto">
+
+        <h3 th:text="${producto.nombre}">Nombre</h3>
+        <p th:text="${producto.descripcion}">Descripción</p>
+        <span th:text="'S/ ' + ${producto.precio}">Precio</span>
+    </div>
+</div>
+
+</body>
+</html>
