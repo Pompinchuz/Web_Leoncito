@@ -8,6 +8,46 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+    .producto-destacado {
+        transition: all 0.3s ease;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .producto-destacado:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .badge-destacado {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #ffc107;
+        color: #000;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        z-index: 1;
+    }
+    
+    .precio-destacado {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #e63946;
+    }
+    
+    .card-img-top {
+        height: 200px;
+        object-fit: contain;
+        background: #f8f9fa;
+        border-radius: 10px 10px 0 0;
+    }
+</style>
 <body>
 
 <!-- Menú de navegación -->
@@ -50,24 +90,54 @@
 <!-- Título -->
 <h2 class="banner-title">Nuestros productos más destacados por fiestas patrias</h2>
 
-<!-- Productos destacados -->
+
 <div class="productos">
-    <div class="producto">
-        <img src="https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/515436164_1024183306596213_2359545707785271710_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=p_kNGDRtA2YQ7kNvwFB6fQ4&_nc_oc=Adk31b7_xHpsD3w8XgekNUNsD6FA2KvdMdswsMISbYCJoxBLW1Yh-Vw5hPmz06gPac_b1oDn5LyTlPgDi5nacy_Q&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=hkuWHRchuO9DO8a31jc7bA&oh=00_AfRnX49u9C2vLoMhUQyoYyy_ikR8gFAduy3XuRinOlTKCA&oe=686FBA40" alt="Producto 1">
-        <h3>Lavadora LG</h3>
-        <p>Gran capacidad, bajo consumo.</p>
-    </div>
-    <div class="producto">
-        <img src="https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/513824624_1024085619939315_1590368800363248497_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=SIWlffEUhxcQ7kNvwHhhRxa&_nc_oc=AdngkEFbWc212P0Gt4q5yjINqakE31wIYrfdpEwFZZrrARdK3pJFRE4hFA-t5s8O-qKqXTg_0sA7qLJwMm17Z9yR&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=DY0GcLxFbv_WJZnrY5DpwQ&oh=00_AfRaJ1fbyATNTeAer-fwUSuAOHQsK0BTaaMWWS_W2PYsaQ&oe=686FDD0F" alt="Producto 2">
-        <h3>Refrigeradora Samsung</h3>
-        <p>Diseño moderno y eficiente.</p>
-    </div>
-    <div class="producto">
-        <img src="https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/515971258_1023885706625973_1759108389969486278_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=QfbgZtP4RpMQ7kNvwGF0GtJ&_nc_oc=AdmMiP--XFcU4oIFmwE_ukh9IkCqzO-wP1GNJAkJ7awQzFiPkDb40zYzJmNoYu0u3XDJYEQk3CWpbrpk_eyluZeV&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=oGJAmj5yWz6hXnJ42eYqEw&oh=00_AfQP7yopNFvMObKxq49ZndjrCXBds0jK8cP4MY2wmY6CvA&oe=686FB63B" alt="Producto 3">
-        <h3>Microondas Panasonic</h3>
-        <p>Rápido, compacto y funcional.</p>
+    <div class="producto" th:each="producto : ${productos}">
+        <img th:src="${producto.imagen}" alt="Producto">
+
+        <h3 th:text="${producto.nombre}">Nombre</h3>
+        <p th:text="${producto.descripcion}">Descripción</p>
+        <span th:text="'S/ ' + ${producto.precio}">Precio</span>
     </div>
 </div>
+
+<!-- Productos Destacados - Versión Mejorada -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Productos Destacados</h2>
+    <div class="row">
+        <div th:each="producto : ${productos}" class="col-md-4 mb-4">
+            <div class="card producto-destacado h-100">
+                <!-- Badge de Destacado -->
+                <div class="badge-destacado">⭐ Destacado</div>
+                
+                <!-- Imagen del Producto -->
+                <img th:src="${producto.imagen}" 
+                     class="card-img-top p-3" 
+                     alt="Producto"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Imagen+no+disponible'">
+                
+                <!-- Cuerpo de la tarjeta -->
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${producto.nombre}">Nombre</h5>
+                    <p class="card-text text-muted" th:text="${producto.descripcion}">Descripción</p>
+                    
+                    <!-- Precio y Botón -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="precio-destacado" th:text="'S/ ' + ${#numbers.formatDecimal(producto.precio, 1, 2, 'COMMA')}">0.00</span>
+                        <a href="#" class="btn btn-warning btn-sm">Ver Detalle</a>
+                    </div>
+                </div>
+                
+                <!-- Pie de tarjeta con categoría -->
+                <div class="card-footer bg-transparent">
+                    <small class="text-muted" th:text="${producto.categoria?.nombre}">Categoría</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
