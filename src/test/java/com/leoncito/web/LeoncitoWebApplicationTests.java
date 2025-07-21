@@ -1,4 +1,4 @@
-package com.leonctio.web;
+package com.leoncito.web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

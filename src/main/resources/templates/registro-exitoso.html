@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro Exitoso</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="text-center">¡Registro Exitoso!</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <div th:if="${mensaje}" class="alert alert-success" th:text="${mensaje}"></div>
+                        <p>El cliente ha sido registrado correctamente en el sistema.</p>
+                        
+                        <!-- Botón único para ir al index -->
+                        <a th:href="@{/}" class="btn btn-primary">Ir a Página Principal</a>
+                        
+                        <!-- Opcional: Mostrar botones adicionales si está autenticado -->
+                        <!--div th:if="${#authentication.principal != 'anonymousUser'}">
+                            <a th:href="@{/clientes/listar}" class="btn btn-info mt-2">Ver Clientes (Solo autenticados)</a>
+                        </div-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

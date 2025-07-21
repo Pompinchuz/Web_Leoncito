@@ -1,29 +1,25 @@
 package com.leoncito.web.model;
 
 
-import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-public class Categoria {
+@Table(name = "roles")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Column(unique = true)
     private String nombre;
-
-    public Categoria() {
-    }
-
-    public Categoria(Long id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
-    }
-
+    
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -39,6 +35,4 @@ public class Categoria {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
 }
